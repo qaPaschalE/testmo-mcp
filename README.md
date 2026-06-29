@@ -462,6 +462,12 @@ src/
 
 ---
 
+## Author
+
+Built by [@qaPaschalE](https://github.com/qaPaschalE)
+
+---
+
 ## License
 
 MIT
