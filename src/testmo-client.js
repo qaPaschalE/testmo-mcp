@@ -146,6 +146,109 @@ export class TestmoClient {
     return this.request("GET", `/projects/${projectId}/sessions`, null, params);
   }
 
+  // ─── Users ────────────────────────────────────────────────────────────────
+  async getCurrentUser() {
+    return this.request("GET", "/user");
+  }
+
+  async getUsers(params = {}) {
+    return this.request("GET", "/users", null, params);
+  }
+
+  async getUser(userId) {
+    return this.request("GET", `/users/${userId}`);
+  }
+
+  async getProjectUsers(projectId, params = {}) {
+    return this.request("GET", `/projects/${projectId}/users`, null, params);
+  }
+
+  // ─── Groups ───────────────────────────────────────────────────────────────
+  async getGroups(params = {}) {
+    return this.request("GET", "/groups", null, params);
+  }
+
+  async getGroup(groupId) {
+    return this.request("GET", `/groups/${groupId}`);
+  }
+
+  // ─── Roles ────────────────────────────────────────────────────────────────
+  async getRoles(params = {}) {
+    return this.request("GET", "/roles", null, params);
+  }
+
+  async getRole(roleId) {
+    return this.request("GET", `/roles/${roleId}`);
+  }
+
+  // ─── Automation Runs ──────────────────────────────────────────────────────
+  async getAutomationRuns(projectId, params = {}) {
+    return this.request("GET", `/projects/${projectId}/automation/runs`, null, params);
+  }
+
+  async getAutomationRun(automationRunId) {
+    return this.request("GET", `/automation/runs/${automationRunId}`);
+  }
+
+  // ─── Automation Cases ─────────────────────────────────────────────────────
+  async getAutomationCases(projectId, params = {}) {
+    return this.request("GET", `/projects/${projectId}/automation/cases`, null, params);
+  }
+
+  // ─── Automation Sources ───────────────────────────────────────────────────
+  async getAutomationSources(projectId, params = {}) {
+    return this.request("GET", `/projects/${projectId}/automation/sources`, null, params);
+  }
+
+  async getAutomationSource(automationSourceId) {
+    return this.request("GET", `/automation/sources/${automationSourceId}`);
+  }
+
+  // ─── Case Attachments ─────────────────────────────────────────────────────
+  async getCaseAttachments(caseId, params = {}) {
+    return this.request("GET", `/cases/${caseId}/attachments`, null, params);
+  }
+
+  async deleteCaseAttachments(caseId, ids) {
+    return this.request("DELETE", `/cases/${caseId}/attachments`, { ids });
+  }
+
+  // ─── Case Result History ──────────────────────────────────────────────────
+  async getCaseResultHistory(projectId, caseId, params = {}) {
+    return this.request("GET", `/projects/${projectId}/cases/${caseId}/result-history`, null, params);
+  }
+
+  // ─── Sessions (individual) ────────────────────────────────────────────────
+  async getSession(sessionId) {
+    return this.request("GET", `/sessions/${sessionId}`);
+  }
+
+  // ─── Connections ──────────────────────────────────────────────────────────
+  async getConnections(params = {}) {
+    return this.request("GET", "/issues/connections", null, params);
+  }
+
+  // ─── Project Lookup ───────────────────────────────────────────────────────
+  async getProjectConfigs(projectId) {
+    return this.request("GET", `/projects/${projectId}/configs`);
+  }
+
+  async getProjectStates(projectId) {
+    return this.request("GET", `/projects/${projectId}/states`);
+  }
+
+  async getProjectStatuses(projectId) {
+    return this.request("GET", `/projects/${projectId}/statuses`);
+  }
+
+  async getProjectMilestoneTypes(projectId) {
+    return this.request("GET", `/projects/${projectId}/milestone-types`);
+  }
+
+  async getProjectRepos(projectId) {
+    return this.request("GET", `/projects/${projectId}/repos`);
+  }
+
   // ─── Automation / CI ─────────────────────────────────────────────────────
   // Testmo uses "threads" to submit automation results
   async createAutomationThread(projectId, runId, data) {

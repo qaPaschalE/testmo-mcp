@@ -377,6 +377,209 @@ export const TOOLS = [
     },
   },
 
+  // ── Users ─────────────────────────────────────────────────────────────────
+  {
+    name: "get_current_user",
+    description: "Get the profile of the currently authenticated API user.",
+    inputSchema: z.object({}),
+    handler: async (client) => client.getCurrentUser(),
+  },
+  {
+    name: "list_users",
+    description: "List all users in the Testmo instance.",
+    inputSchema: z.object({ ...paginationParams }),
+    handler: async (client, args) => client.getUsers(args),
+  },
+  {
+    name: "get_user",
+    description: "Get details of a specific user by ID.",
+    inputSchema: z.object({
+      user_id: z.number().int().positive().describe("User ID"),
+    }),
+    handler: async (client, args) => client.getUser(args.user_id),
+  },
+  {
+    name: "list_project_users",
+    description: "List all users who have access to a specific project.",
+    inputSchema: z.object({ ...projectIdParam, ...paginationParams }),
+    handler: async (client, args) => {
+      const { project_id, ...params } = args;
+      return client.getProjectUsers(project_id, params);
+    },
+  },
+
+  // ── Groups ────────────────────────────────────────────────────────────────
+  {
+    name: "list_groups",
+    description: "List all user groups defined in the Testmo instance.",
+    inputSchema: z.object({ ...paginationParams }),
+    handler: async (client, args) => client.getGroups(args),
+  },
+  {
+    name: "get_group",
+    description: "Get details of a specific user group by ID.",
+    inputSchema: z.object({
+      group_id: z.number().int().positive().describe("Group ID"),
+    }),
+    handler: async (client, args) => client.getGroup(args.group_id),
+  },
+
+  // ── Roles ─────────────────────────────────────────────────────────────────
+  {
+    name: "list_roles",
+    description: "List all roles defined in the Testmo instance.",
+    inputSchema: z.object({ ...paginationParams }),
+    handler: async (client, args) => client.getRoles(args),
+  },
+  {
+    name: "get_role",
+    description: "Get details of a specific role by ID.",
+    inputSchema: z.object({
+      role_id: z.number().int().positive().describe("Role ID"),
+    }),
+    handler: async (client, args) => client.getRole(args.role_id),
+  },
+
+  // ── Automation Runs ───────────────────────────────────────────────────────
+  {
+    name: "list_automation_runs",
+    description: "List automation runs for a project (CI/CD history).",
+    inputSchema: z.object({ ...projectIdParam, ...paginationParams }),
+    handler: async (client, args) => {
+      const { project_id, ...params } = args;
+      return client.getAutomationRuns(project_id, params);
+    },
+  },
+  {
+    name: "get_automation_run",
+    description: "Get details of a specific automation run by ID.",
+    inputSchema: z.object({
+      automation_run_id: z.number().int().positive().describe("Automation run ID"),
+    }),
+    handler: async (client, args) => client.getAutomationRun(args.automation_run_id),
+  },
+
+  // ── Automation Cases ──────────────────────────────────────────────────────
+  {
+    name: "list_automation_cases",
+    description: "List automation cases linked to a project (cases imported from CI runs).",
+    inputSchema: z.object({ ...projectIdParam, ...paginationParams }),
+    handler: async (client, args) => {
+      const { project_id, ...params } = args;
+      return client.getAutomationCases(project_id, params);
+    },
+  },
+
+  // ── Automation Sources ────────────────────────────────────────────────────
+  {
+    name: "list_automation_sources",
+    description: "List automation sources configured in a project.",
+    inputSchema: z.object({ ...projectIdParam, ...paginationParams }),
+    handler: async (client, args) => {
+      const { project_id, ...params } = args;
+      return client.getAutomationSources(project_id, params);
+    },
+  },
+  {
+    name: "get_automation_source",
+    description: "Get details of a specific automation source by ID.",
+    inputSchema: z.object({
+      automation_source_id: z.number().int().positive().describe("Automation source ID"),
+    }),
+    handler: async (client, args) => client.getAutomationSource(args.automation_source_id),
+  },
+
+  // ── Case Attachments ──────────────────────────────────────────────────────
+  {
+    name: "list_case_attachments",
+    description: "List all attachments on a specific test case.",
+    inputSchema: z.object({
+      case_id: z.number().int().positive().describe("Test case ID"),
+      ...paginationParams,
+    }),
+    handler: async (client, args) => {
+      const { case_id, ...params } = args;
+      return client.getCaseAttachments(case_id, params);
+    },
+  },
+  {
+    name: "delete_case_attachments",
+    description: "Delete one or more attachments from a test case by attachment ID.",
+    inputSchema: z.object({
+      case_id: z.number().int().positive().describe("Test case ID"),
+      ids: z.array(z.number().int().positive()).min(1).describe("Attachment IDs to delete"),
+    }),
+    handler: async (client, args) => {
+      await client.deleteCaseAttachments(args.case_id, args.ids);
+      return { success: true, message: `Deleted ${args.ids.length} attachment(s).` };
+    },
+  },
+
+  // ── Case Result History ───────────────────────────────────────────────────
+  {
+    name: "get_case_result_history",
+    description: "Get the result history of a specific test case across all runs.",
+    inputSchema: z.object({
+      ...projectIdParam,
+      case_id: z.number().int().positive().describe("Test case ID"),
+      ...paginationParams,
+    }),
+    handler: async (client, args) => {
+      const { project_id, case_id, ...params } = args;
+      return client.getCaseResultHistory(project_id, case_id, params);
+    },
+  },
+
+  // ── Sessions (individual) ─────────────────────────────────────────────────
+  {
+    name: "get_session",
+    description: "Get details of a specific exploratory test session by ID.",
+    inputSchema: z.object({
+      session_id: z.number().int().positive().describe("Session ID"),
+    }),
+    handler: async (client, args) => client.getSession(args.session_id),
+  },
+
+  // ── Connections ───────────────────────────────────────────────────────────
+  {
+    name: "list_connections",
+    description: "List all issue tracker connections configured in the Testmo instance (e.g. Jira, GitHub Issues).",
+    inputSchema: z.object({ ...paginationParams }),
+    handler: async (client, args) => client.getConnections(args),
+  },
+
+  // ── Project Lookup ────────────────────────────────────────────────────────
+  {
+    name: "get_project_configs",
+    description: "Get configuration settings for a project.",
+    inputSchema: z.object({ ...projectIdParam }),
+    handler: async (client, args) => client.getProjectConfigs(args.project_id),
+  },
+  {
+    name: "get_project_states",
+    description: "Get the list of test states available in a project.",
+    inputSchema: z.object({ ...projectIdParam }),
+    handler: async (client, args) => client.getProjectStates(args.project_id),
+  },
+  {
+    name: "get_project_statuses",
+    description: "Get the list of test statuses available in a project (passed, failed, blocked, etc.).",
+    inputSchema: z.object({ ...projectIdParam }),
+    handler: async (client, args) => client.getProjectStatuses(args.project_id),
+  },
+  {
+    name: "get_project_milestone_types",
+    description: "Get the milestone types configured in a project.",
+    inputSchema: z.object({ ...projectIdParam }),
+    handler: async (client, args) => client.getProjectMilestoneTypes(args.project_id),
+  },
+  {
+    name: "get_project_repos",
+    description: "Get the test repositories linked to a project.",
+    inputSchema: z.object({ ...projectIdParam }),
+    handler: async (client, args) => client.getProjectRepos(args.project_id),
+  },
+
   // ── Automation / CI ───────────────────────────────────────────────────────
   {
     name: "start_automation_thread",

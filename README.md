@@ -6,14 +6,14 @@
 [![Node](https://img.shields.io/node/v/testmo-mcp?logo=nodedotjs&logoColor=white&label=node)](https://nodejs.org)
 [![License](https://img.shields.io/github/license/qaPaschalE/testmo-mcp?color=green)](./LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-compatible-blueviolet)](https://modelcontextprotocol.io)
-[![Tools](https://img.shields.io/badge/tools-28-orange)](https://github.com/qaPaschalE/testmo-mcp#tools)
+[![Tools](https://img.shields.io/badge/tools-51-orange)](https://github.com/qaPaschalE/testmo-mcp#tools)
 [![AI clients](https://img.shields.io/badge/AI%20clients-12-informational)](https://github.com/qaPaschalE/testmo-mcp#supported-clients-at-a-glance)
 [![ESM](https://img.shields.io/badge/module-ESM-yellow)](https://nodejs.org/api/esm.html)
 [![Testmo API](https://img.shields.io/badge/Testmo%20API-v1-red)](https://testmo.com)
 [![SDK](https://img.shields.io/badge/%40modelcontextprotocol%2Fsdk-1.29.0-blueviolet?logo=anthropic)](https://www.npmjs.com/package/@modelcontextprotocol/sdk)
 [![Zod](https://img.shields.io/badge/zod-4.4.3-3E67B1?logo=zod)](https://zod.dev)
 
-A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that connects Claude to your [Testmo](https://testmo.com) instance. Ask Claude in natural language to manage test runs, review test results, submit automation results from CI, and more — without leaving your workflow.
+A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that connects Claude to your [Testmo](https://testmo.com) instance with over 50+ available tools. Ask Claude in natural language to manage test runs, review test results, submit automation results from CI, and more — without leaving your workflow.
 
 ---
 
@@ -86,12 +86,39 @@ Once connected, you can talk to Claude like:
 
 ### Project Metadata
 
-| Tool             | Description                                                        |
-| ---------------- | ------------------------------------------------------------------ |
-| `list_templates` | List case templates (BDD, Steps, Text) and their field definitions |
-| `list_tags`      | List all tags in a project with usage counts                       |
-| `list_fields`    | List custom fields configured in a project                         |
-| `list_sessions`  | List exploratory test sessions                                     |
+| Tool                          | Description                                                        |
+| ----------------------------- | ------------------------------------------------------------------ |
+| `list_templates`              | List case templates (BDD, Steps, Text) and their field definitions |
+| `list_tags`                   | List all tags in a project with usage counts                       |
+| `list_fields`                 | List custom fields configured in a project                         |
+| `list_sessions`               | List exploratory test sessions                                     |
+| `get_session`                 | Get details of a specific exploratory test session                 |
+| `get_project_configs`         | Get configuration settings for a project                           |
+| `get_project_states`          | Get test states available in a project                             |
+| `get_project_statuses`        | Get test statuses available in a project                           |
+| `get_project_milestone_types` | Get milestone types configured in a project                        |
+| `get_project_repos`           | Get test repositories linked to a project                          |
+
+### Users & Access
+
+| Tool                 | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| `get_current_user`   | Get the profile of the currently authenticated user |
+| `list_users`         | List all users in the Testmo instance               |
+| `get_user`           | Get details of a specific user by ID                |
+| `list_project_users` | List users who have access to a specific project    |
+| `list_groups`        | List all user groups in the instance                |
+| `get_group`          | Get details of a specific user group                |
+| `list_roles`         | List all roles in the instance                      |
+| `get_role`           | Get details of a specific role                      |
+
+### Case Attachments
+
+| Tool                      | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `list_case_attachments`   | List all attachments on a specific test case     |
+| `delete_case_attachments` | Delete one or more attachments from a test case  |
+| `get_case_result_history` | Get the result history of a case across all runs |
 
 ### CI / Automation
 
@@ -100,6 +127,17 @@ Once connected, you can talk to Claude like:
 | `start_automation_thread`    | Open an automation thread in a run (returns a thread ID) |
 | `submit_automation_results`  | Submit an array of test results to a thread              |
 | `complete_automation_thread` | Close the thread after all results are submitted         |
+| `list_automation_runs`       | List automation runs (CI/CD history) for a project       |
+| `get_automation_run`         | Get details of a specific automation run                 |
+| `list_automation_cases`      | List automation cases imported from CI runs              |
+| `list_automation_sources`    | List automation sources configured in a project          |
+| `get_automation_source`      | Get details of a specific automation source              |
+
+### Integrations
+
+| Tool               | Description                                                |
+| ------------------ | ---------------------------------------------------------- |
+| `list_connections` | List issue tracker connections (Jira, GitHub Issues, etc.) |
 
 ---
 
