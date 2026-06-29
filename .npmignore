@@ -1,0 +1,9 @@
+# Development
+.gitignore
+.npmignore
+*.pdf
+benefits-v2-coverage-review.html
+
+# Claude
+CLAUDE.md
+.claude/

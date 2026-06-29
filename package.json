@@ -1,15 +1,47 @@
 {
   "name": "testmo-mcp",
   "version": "1.0.0",
-  "description": "Custom MCP server for Testmo test management",
+  "description": "MCP server for Testmo — manage test runs, cases, milestones and CI automation from any MCP-compatible AI client",
   "main": "src/index.js",
   "type": "module",
+  "bin": {
+    "testmo-mcp": "src/index.js"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "prepublishOnly": "node --check src/index.js && node --check src/testmo-client.js && node --check src/tools.js"
   },
-  "keywords": ["mcp", "testmo", "testing"],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "testmo",
+    "testing",
+    "test-management",
+    "qa",
+    "ai",
+    "claude",
+    "cursor",
+    "windsurf"
+  ],
+  "author": "SeamlessHR",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seamlesshr/testmo-mcp.git"
+  },
+  "homepage": "https://github.com/seamlesshr/testmo-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/seamlesshr/testmo-mcp/issues"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "node-fetch": "^3.3.2",

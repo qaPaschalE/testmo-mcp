@@ -1,15 +1,17 @@
 # testmo-mcp
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=nodedotjs&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green)
-![MCP](https://img.shields.io/badge/MCP-compatible-blueviolet)
-![Tools](https://img.shields.io/badge/tools-28-orange)
-![Clients](https://img.shields.io/badge/AI%20clients-12-informational)
-![ESM](https://img.shields.io/badge/module-ESM-yellow)
-![Testmo API](https://img.shields.io/badge/Testmo%20API-v1-red)
-![SDK](https://img.shields.io/badge/%40modelcontextprotocol%2Fsdk-1.29.0-blueviolet?logo=anthropic)
-![Zod](https://img.shields.io/badge/zod-4.4.3-3E67B1?logo=zod)
+[![CI](https://github.com/seamlesshr/testmo-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/seamlesshr/testmo-mcp/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/testmo-mcp?logo=npm&logoColor=white)](https://www.npmjs.com/package/testmo-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/testmo-mcp?logo=npm&logoColor=white&color=orange)](https://www.npmjs.com/package/testmo-mcp)
+[![Node](https://img.shields.io/node/v/testmo-mcp?logo=nodedotjs&logoColor=white&label=node)](https://nodejs.org)
+[![License](https://img.shields.io/npm/l/testmo-mcp?color=green)](./LICENSE)
+[![MCP](https://img.shields.io/badge/MCP-compatible-blueviolet)](https://modelcontextprotocol.io)
+[![Tools](https://img.shields.io/badge/tools-28-orange)](https://github.com/seamlesshr/testmo-mcp#tools)
+[![AI clients](https://img.shields.io/badge/AI%20clients-12-informational)](https://github.com/seamlesshr/testmo-mcp#supported-clients-at-a-glance)
+[![ESM](https://img.shields.io/badge/module-ESM-yellow)](https://nodejs.org/api/esm.html)
+[![Testmo API](https://img.shields.io/badge/Testmo%20API-v1-red)](https://testmo.com)
+[![SDK](https://img.shields.io/badge/%40modelcontextprotocol%2Fsdk-1.29.0-blueviolet?logo=anthropic)](https://www.npmjs.com/package/@modelcontextprotocol/sdk)
+[![Zod](https://img.shields.io/badge/zod-4.4.3-3E67B1?logo=zod)](https://zod.dev)
 
 A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that connects Claude to your [Testmo](https://testmo.com) instance. Ask Claude in natural language to manage test runs, review test results, submit automation results from CI, and more — without leaving your workflow.
 
@@ -95,13 +97,7 @@ Once connected, you can talk to Claude like:
 
 ## Setup
 
-### Step 1 — Install dependencies
-
-```bash
-npm install
-```
-
-### Step 2 — Get your Testmo API token
+### Step 1 — Get your Testmo API token
 
 1. Log into your Testmo instance
 2. Click your avatar → **Profile** → **API Tokens**
@@ -109,9 +105,9 @@ npm install
 
 > The token is only shown once. Store it somewhere safe.
 
-### Step 3 — Configure your AI client
+### Step 2 — Configure your AI client
 
-MCP is now supported across the major AI coding tools. Find your client below.
+No local install needed — every client below uses `npx` to pull and run the package on demand.
 
 The config block is the same for most tools — only the file location differs:
 
@@ -119,8 +115,8 @@ The config block is the same for most tools — only the file location differs:
 {
   "mcpServers": {
     "testmo": {
-      "command": "node",
-      "args": ["/absolute/path/to/testmo-mcp/src/index.js"],
+      "command": "npx",
+      "args": ["-y", "testmo-mcp"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -150,17 +146,17 @@ Paste the config block above into the file, then **fully quit and reopen** Claud
 claude mcp add testmo \
   -e TESTMO_URL=https://your-instance.testmo.net \
   -e TESTMO_TOKEN=your-api-token \
-  -- node /absolute/path/to/testmo-mcp/src/index.js
+  -- npx -y testmo-mcp
 ```
 
-Or for a project-scoped setup, add to `.mcp.json` at the repo root (use a relative path):
+Or for a project-scoped setup, add to `.mcp.json` at the repo root:
 
 ```json
 {
   "mcpServers": {
     "testmo": {
-      "command": "node",
-      "args": ["./testmo-mcp/src/index.js"],
+      "command": "npx",
+      "args": ["-y", "testmo-mcp"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -202,8 +198,8 @@ Zed uses a different root key (`context_servers` instead of `mcpServers`). Add t
   "context_servers": {
     "testmo": {
       "command": {
-        "path": "node",
-        "args": ["/absolute/path/to/testmo-mcp/src/index.js"]
+        "path": "npx",
+        "args": ["-y", "testmo-mcp"]
       },
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
@@ -226,8 +222,8 @@ Create `.continue/mcpServers/testmo.json` in your project root (or `~/.continue/
 {
   "mcpServers": {
     "testmo": {
-      "command": "node",
-      "args": ["/absolute/path/to/testmo-mcp/src/index.js"],
+      "command": "npx",
+      "args": ["-y", "testmo-mcp"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -257,8 +253,8 @@ Add to your VS Code `settings.json` (open via **Cmd/Ctrl+Shift+P → Open User S
   "mcp": {
     "servers": {
       "testmo": {
-        "command": "node",
-        "args": ["/absolute/path/to/testmo-mcp/src/index.js"],
+        "command": "npx",
+        "args": ["-y", "testmo-mcp"],
         "env": {
           "TESTMO_URL": "https://your-instance.testmo.net",
           "TESTMO_TOKEN": "your-api-token"
@@ -303,8 +299,8 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 {
   "mcpServers": {
     "testmo": {
-      "command": "node",
-      "args": ["/absolute/path/to/testmo-mcp/src/index.js"],
+      "command": "npx",
+      "args": ["-y", "testmo-mcp"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -320,7 +316,7 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 
 1. Open ChatGPT Desktop → **Settings → Integrations**
 2. Click **Add MCP Server**
-3. Set Command to `node` and Args to the absolute path of `src/index.js`
+3. Set Command to `npx` and Args to `-y testmo-mcp`
 4. Add `TESTMO_URL` and `TESTMO_TOKEN` as environment variables
 
 > MCP in ChatGPT Desktop requires a **Plus, Pro, or Team** plan.
@@ -349,7 +345,10 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 ## Running locally
 
 ```bash
-# Run the server (requires env vars)
+# Install dependencies
+npm install
+
+# Run the server
 TESTMO_URL=https://your-instance.testmo.net \
 TESTMO_TOKEN=your-token \
 npm start
@@ -370,7 +369,7 @@ npm run dev
 npx @modelcontextprotocol/inspector \
   -e TESTMO_URL=https://your-instance.testmo.net \
   -e TESTMO_TOKEN=your-token \
-  node src/index.js
+  npx testmo-mcp
 ```
 
 Opens a browser UI where you can call any tool interactively and inspect the raw JSON response.
@@ -380,7 +379,7 @@ Opens a browser UI where you can call any tool interactively and inspect the raw
 Verify the server starts and registers all tools without crashing:
 
 ```bash
-TESTMO_URL=https://example.testmo.net TESTMO_TOKEN=fake npm start
+TESTMO_URL=https://example.testmo.net TESTMO_TOKEN=fake npx testmo-mcp
 # Expected: [testmo-mcp] Server running on stdio. Ready for connections.
 ```
 
@@ -412,8 +411,8 @@ To clean up cases Claude generated that you don't want, use `delete_cases` with 
 Use the three automation tools together to submit test results from a pipeline:
 
 ```
-1. create_run        → get run_id
-2. start_automation_thread  → get thread_id
+1. create_run                → get run_id
+2. start_automation_thread   → get thread_id
 3. submit_automation_results (can be called multiple times)
 4. complete_automation_thread
 ```
@@ -459,7 +458,7 @@ src/
 → Check that `TESTMO_URL` is your full instance URL, e.g. `https://acme.testmo.net` (no trailing slash, no path).
 
 **Tools not appearing in Claude**
-→ Make sure the path in your config is absolute, and fully restart Claude Desktop (quit from the menu bar, not just close the window).
+→ Fully restart Claude Desktop (quit from the menu bar, not just close the window). For other clients, check that `npx` is available in your system PATH.
 
 ---
 
