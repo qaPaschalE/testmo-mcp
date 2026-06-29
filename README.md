@@ -1,13 +1,13 @@
 # testmo-mcp
 
-[![CI](https://github.com/seamlesshr/testmo-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/seamlesshr/testmo-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/qaPaschalE/testmo-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/qaPaschalE/testmo-mcp/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/testmo-mcp?logo=npm&logoColor=white)](https://www.npmjs.com/package/testmo-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/testmo-mcp?logo=npm&logoColor=white&color=orange)](https://www.npmjs.com/package/testmo-mcp)
 [![Node](https://img.shields.io/node/v/testmo-mcp?logo=nodedotjs&logoColor=white&label=node)](https://nodejs.org)
 [![License](https://img.shields.io/npm/l/testmo-mcp?color=green)](./LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-compatible-blueviolet)](https://modelcontextprotocol.io)
-[![Tools](https://img.shields.io/badge/tools-28-orange)](https://github.com/seamlesshr/testmo-mcp#tools)
-[![AI clients](https://img.shields.io/badge/AI%20clients-12-informational)](https://github.com/seamlesshr/testmo-mcp#supported-clients-at-a-glance)
+[![Tools](https://img.shields.io/badge/tools-28-orange)](https://github.com/qaPaschalE/testmo-mcp#tools)
+[![AI clients](https://img.shields.io/badge/AI%20clients-12-informational)](https://github.com/qaPaschalE/testmo-mcp#supported-clients-at-a-glance)
 [![ESM](https://img.shields.io/badge/module-ESM-yellow)](https://nodejs.org/api/esm.html)
 [![Testmo API](https://img.shields.io/badge/Testmo%20API-v1-red)](https://testmo.com)
 [![SDK](https://img.shields.io/badge/%40modelcontextprotocol%2Fsdk-1.29.0-blueviolet?logo=anthropic)](https://www.npmjs.com/package/@modelcontextprotocol/sdk)
@@ -34,64 +34,72 @@ Once connected, you can talk to Claude like:
 ## Tools
 
 ### Projects
-| Tool | Description |
-|---|---|
+
+| Tool            | Description                                   |
+| --------------- | --------------------------------------------- |
 | `list_projects` | List all projects accessible to the API token |
-| `get_project` | Get details of a specific project |
+| `get_project`   | Get details of a specific project             |
 
 ### Milestones
-| Tool | Description |
-|---|---|
-| `list_milestones` | List milestones for a project |
-| `get_milestone` | Get a specific milestone |
+
+| Tool               | Description                                                 |
+| ------------------ | ----------------------------------------------------------- |
+| `list_milestones`  | List milestones for a project                               |
+| `get_milestone`    | Get a specific milestone                                    |
 | `create_milestone` | Create a new milestone (name, description, start/due dates) |
-| `update_milestone` | Update name, dates, or mark as completed |
+| `update_milestone` | Update name, dates, or mark as completed                    |
 
 ### Test Runs
-| Tool | Description |
-|---|---|
-| `list_runs` | List runs for a project, with optional milestone/status filters |
-| `get_run` | Get run details including stats and status |
-| `create_run` | Create a new test run |
-| `update_run` | Rename, change milestone, add refs, or close a run |
-| `delete_run` | Permanently delete a run |
+
+| Tool         | Description                                                     |
+| ------------ | --------------------------------------------------------------- |
+| `list_runs`  | List runs for a project, with optional milestone/status filters |
+| `get_run`    | Get run details including stats and status                      |
+| `create_run` | Create a new test run                                           |
+| `update_run` | Rename, change milestone, add refs, or close a run              |
+| `delete_run` | Permanently delete a run                                        |
 
 ### Test Results
-| Tool | Description |
-|---|---|
+
+| Tool           | Description                                                 |
+| -------------- | ----------------------------------------------------------- |
 | `list_results` | List test results inside a run, with optional status filter |
-| `get_result` | Get a single test result by ID |
+| `get_result`   | Get a single test result by ID                              |
 
 ### Test Cases (Repository)
-| Tool | Description |
-|---|---|
-| `list_cases` | List test cases in a project, optionally filtered by folder |
+
+| Tool           | Description                                                           |
+| -------------- | --------------------------------------------------------------------- |
+| `list_cases`   | List test cases in a project, optionally filtered by folder           |
 | `create_cases` | Create one or more test cases — use this to generate cases from a PRD |
-| `update_cases` | Bulk-update cases: move to a folder, change priority, etc. |
-| `delete_cases` | Permanently delete test cases by ID |
+| `update_cases` | Bulk-update cases: move to a folder, change priority, etc.            |
+| `delete_cases` | Permanently delete test cases by ID                                   |
 
 ### Folders
-| Tool | Description |
-|---|---|
-| `list_folders` | List all folders in a project repo with case counts |
+
+| Tool             | Description                                           |
+| ---------------- | ----------------------------------------------------- |
+| `list_folders`   | List all folders in a project repo with case counts   |
 | `create_folders` | Create folders to organise cases by feature or sprint |
-| `update_folders` | Rename folders or move them under a parent folder |
-| `delete_folders` | Permanently delete folders and all cases inside them |
+| `update_folders` | Rename folders or move them under a parent folder     |
+| `delete_folders` | Permanently delete folders and all cases inside them  |
 
 ### Project Metadata
-| Tool | Description |
-|---|---|
+
+| Tool             | Description                                                        |
+| ---------------- | ------------------------------------------------------------------ |
 | `list_templates` | List case templates (BDD, Steps, Text) and their field definitions |
-| `list_tags` | List all tags in a project with usage counts |
-| `list_fields` | List custom fields configured in a project |
-| `list_sessions` | List exploratory test sessions |
+| `list_tags`      | List all tags in a project with usage counts                       |
+| `list_fields`    | List custom fields configured in a project                         |
+| `list_sessions`  | List exploratory test sessions                                     |
 
 ### CI / Automation
-| Tool | Description |
-|---|---|
-| `start_automation_thread` | Open an automation thread in a run (returns a thread ID) |
-| `submit_automation_results` | Submit an array of test results to a thread |
-| `complete_automation_thread` | Close the thread after all results are submitted |
+
+| Tool                         | Description                                              |
+| ---------------------------- | -------------------------------------------------------- |
+| `start_automation_thread`    | Open an automation thread in a run (returns a thread ID) |
+| `submit_automation_results`  | Submit an array of test results to a thread              |
+| `complete_automation_thread` | Close the thread after all results are submitted         |
 
 ---
 
@@ -130,11 +138,11 @@ The config block is the same for most tools — only the file location differs:
 
 #### Claude Desktop
 
-| OS | Config file |
-|---|---|
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
-| Linux | `~/.config/claude-desktop/claude_desktop_config.json` |
+| OS      | Config file                                                       |
+| ------- | ----------------------------------------------------------------- |
+| macOS   | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows | `%APPDATA%\Claude\claude_desktop_config.json`                     |
+| Linux   | `~/.config/claude-desktop/claude_desktop_config.json`             |
 
 Paste the config block above into the file, then **fully quit and reopen** Claude Desktop.
 
@@ -170,10 +178,10 @@ Or for a project-scoped setup, add to `.mcp.json` at the repo root:
 
 #### Cursor
 
-| Scope | Config file |
-|---|---|
-| Global (all projects) | `~/.cursor/mcp.json` |
-| Project only | `.cursor/mcp.json` in your repo root |
+| Scope                 | Config file                          |
+| --------------------- | ------------------------------------ |
+| Global (all projects) | `~/.cursor/mcp.json`                 |
+| Project only          | `.cursor/mcp.json` in your repo root |
 
 Paste the config block, then open **Cursor Settings → MCP** and enable the server.
 
@@ -271,9 +279,9 @@ Then open GitHub Copilot Chat, switch to **Agent mode**, and the testmo tools wi
 
 #### Amazon Q Developer
 
-| Scope | Config file |
-|---|---|
-| Global | `~/.aws/amazonq/mcp.json` |
+| Scope   | Config file                           |
+| ------- | ------------------------------------- |
+| Global  | `~/.aws/amazonq/mcp.json`             |
 | Project | `.amazonq/mcp.json` in your repo root |
 
 Paste the config block. The tools appear automatically in the Q Developer chat panel.
@@ -282,9 +290,9 @@ Paste the config block. The tools appear automatically in the Q Developer chat p
 
 #### Kimi Code (CLI)
 
-| Scope | Config file |
-|---|---|
-| Global | `~/.kimi-code/mcp.json` |
+| Scope   | Config file                             |
+| ------- | --------------------------------------- |
+| Global  | `~/.kimi-code/mcp.json`                 |
 | Project | `.kimi-code/mcp.json` in your repo root |
 
 Paste the config block, or run `/mcp-config` inside the Kimi Code TUI to configure interactively.
@@ -325,20 +333,20 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 
 ### Supported clients at a glance
 
-| Client | Config format | Config location | Notes |
-|---|---|---|---|
-| Claude Desktop | JSON | `~/Library/Application Support/Claude/` | Restart required |
-| Claude Code CLI | CLI / `.mcp.json` | Repo root or global | `claude mcp add` command |
-| Cursor | JSON | `~/.cursor/mcp.json` | Global or per-project |
-| Windsurf | JSON | `~/.codeium/windsurf/mcp_config.json` | Create file manually |
-| Zed | JSON | `~/.config/zed/settings.json` | Uses `context_servers` key |
-| Continue.dev | JSON | `.continue/mcpServers/` | Per-project or global |
-| Cline | JSON | UI-managed | Configure via extension panel |
-| GitHub Copilot | JSON | VS Code `settings.json` | Agent mode only |
-| Amazon Q | JSON | `~/.aws/amazonq/mcp.json` | Global or per-project |
-| Kimi Code | JSON | `~/.kimi-code/mcp.json` | `/mcp-config` TUI available |
-| Gemini CLI | JSON | `~/.gemini/settings.json` | CLI tool only |
-| ChatGPT Desktop | UI | Settings → Integrations | Plus/Pro/Team plans only |
+| Client          | Config format     | Config location                         | Notes                         |
+| --------------- | ----------------- | --------------------------------------- | ----------------------------- |
+| Claude Desktop  | JSON              | `~/Library/Application Support/Claude/` | Restart required              |
+| Claude Code CLI | CLI / `.mcp.json` | Repo root or global                     | `claude mcp add` command      |
+| Cursor          | JSON              | `~/.cursor/mcp.json`                    | Global or per-project         |
+| Windsurf        | JSON              | `~/.codeium/windsurf/mcp_config.json`   | Create file manually          |
+| Zed             | JSON              | `~/.config/zed/settings.json`           | Uses `context_servers` key    |
+| Continue.dev    | JSON              | `.continue/mcpServers/`                 | Per-project or global         |
+| Cline           | JSON              | UI-managed                              | Configure via extension panel |
+| GitHub Copilot  | JSON              | VS Code `settings.json`                 | Agent mode only               |
+| Amazon Q        | JSON              | `~/.aws/amazonq/mcp.json`               | Global or per-project         |
+| Kimi Code       | JSON              | `~/.kimi-code/mcp.json`                 | `/mcp-config` TUI available   |
+| Gemini CLI      | JSON              | `~/.gemini/settings.json`               | CLI tool only                 |
+| ChatGPT Desktop | UI                | Settings → Integrations                 | Plus/Pro/Team plans only      |
 
 ---
 
@@ -395,12 +403,12 @@ Example prompt:
 
 Each created case supports these fields:
 
-| Field | Maps to |
-|---|---|
-| `name` | Test case title |
-| `custom_description` | Background / user story |
-| `custom_precondition` | Given / setup conditions |
-| `custom_expected` | Expected result / acceptance criteria |
+| Field                 | Maps to                               |
+| --------------------- | ------------------------------------- |
+| `name`                | Test case title                       |
+| `custom_description`  | Background / user story               |
+| `custom_precondition` | Given / setup conditions              |
+| `custom_expected`     | Expected result / acceptance criteria |
 
 To clean up cases Claude generated that you don't want, use `delete_cases` with the IDs returned from the create response.
 
@@ -423,13 +431,13 @@ Example prompt to Claude:
 
 ### Test status IDs
 
-| ID | Status |
-|---|---|
-| 1 | Passed |
-| 2 | Failed |
-| 3 | Blocked |
-| 4 | Skipped |
-| 5 | Untested |
+| ID  | Status   |
+| --- | -------- |
+| 1   | Passed   |
+| 2   | Failed   |
+| 3   | Blocked  |
+| 4   | Skipped  |
+| 5   | Untested |
 
 ---
 
