@@ -32,15 +32,18 @@
     "cursor",
     "windsurf"
   ],
-  "author": "SeamlessHR",
+  "author": {
+    "name": "Paschal Enyimiri",
+    "url": "https://github.com/qaPaschalE"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seamlesshr/testmo-mcp.git"
+    "url": "https://github.com/qaPaschalE/testmo-mcp.git"
   },
-  "homepage": "https://github.com/seamlesshr/testmo-mcp#readme",
+  "homepage": "https://github.com/qaPaschalE/testmo-mcp#readme",
   "bugs": {
-    "url": "https://github.com/seamlesshr/testmo-mcp/issues"
+    "url": "https://github.com/qaPaschalE/testmo-mcp/issues"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
