@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/testmo-mcp?logo=npm&logoColor=white)](https://www.npmjs.com/package/testmo-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/testmo-mcp?logo=npm&logoColor=white&color=orange)](https://www.npmjs.com/package/testmo-mcp)
 [![Node](https://img.shields.io/node/v/testmo-mcp?logo=nodedotjs&logoColor=white&label=node)](https://nodejs.org)
-[![License](https://img.shields.io/npm/l/testmo-mcp?color=green)](./LICENSE)
+[![License](https://img.shields.io/github/license/qaPaschalE/testmo-mcp?color=green)](./LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-compatible-blueviolet)](https://modelcontextprotocol.io)
 [![Tools](https://img.shields.io/badge/tools-28-orange)](https://github.com/qaPaschalE/testmo-mcp#tools)
 [![AI clients](https://img.shields.io/badge/AI%20clients-12-informational)](https://github.com/qaPaschalE/testmo-mcp#supported-clients-at-a-glance)
