@@ -113,18 +113,28 @@ Once connected, you can talk to Claude like:
 
 > The token is only shown once. Store it somewhere safe.
 
-### Step 2 — Configure your AI client
+### Step 2 — Install the package
 
-No local install needed — every client below uses `npx` to pull and run the package on demand.
+**Option A — Global install (recommended)**
+
+```bash
+npm install -g testmo-mcp
+```
+
+Then replace `npx -y testmo-mcp@latest` with just `testmo-mcp` in any config block below.
+
+**Option B — No install needed**
+
+Use `npx` to pull and run on demand — no install required:
 
 The config block is the same for most tools — only the file location differs:
 
 ```json
 {
   "mcpServers": {
-    "testmo": {
+    "testmo-mcp": {
       "command": "npx",
-      "args": ["-y", "testmo-mcp"],
+      "args": ["-y", "testmo-mcp@latest"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -151,10 +161,17 @@ Paste the config block above into the file, then **fully quit and reopen** Claud
 #### Claude Code (CLI)
 
 ```bash
-claude mcp add testmo \
+# If installed globally (npm install -g testmo-mcp)
+claude mcp add testmo-mcp \
   -e TESTMO_URL=https://your-instance.testmo.net \
   -e TESTMO_TOKEN=your-api-token \
-  -- npx -y testmo-mcp
+  -- testmo-mcp
+
+# Or with npx (no install needed)
+claude mcp add testmo-mcp \
+  -e TESTMO_URL=https://your-instance.testmo.net \
+  -e TESTMO_TOKEN=your-api-token \
+  -- npx -y testmo-mcp@latest
 ```
 
 Or for a project-scoped setup, add to `.mcp.json` at the repo root:
@@ -162,9 +179,9 @@ Or for a project-scoped setup, add to `.mcp.json` at the repo root:
 ```json
 {
   "mcpServers": {
-    "testmo": {
+    "testmo-mcp": {
       "command": "npx",
-      "args": ["-y", "testmo-mcp"],
+      "args": ["-y", "testmo-mcp@latest"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -204,10 +221,10 @@ Zed uses a different root key (`context_servers` instead of `mcpServers`). Add t
 ```json
 {
   "context_servers": {
-    "testmo": {
+    "testmo-mcp": {
       "command": {
         "path": "npx",
-        "args": ["-y", "testmo-mcp"]
+        "args": ["-y", "testmo-mcp@latest"]
       },
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
@@ -224,14 +241,14 @@ For project-scoped config, use `.zed/settings.json` in your repo root instead.
 
 #### Continue.dev (VS Code / JetBrains)
 
-Create `.continue/mcpServers/testmo.json` in your project root (or `~/.continue/mcpServers/testmo.json` globally):
+Create `.continue/mcpServers/testmo-mcp.json` in your project root (or `~/.continue/mcpServers/testmo-mcp.json` globally):
 
 ```json
 {
   "mcpServers": {
-    "testmo": {
+    "testmo-mcp": {
       "command": "npx",
-      "args": ["-y", "testmo-mcp"],
+      "args": ["-y", "testmo-mcp@latest"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -260,9 +277,9 @@ Add to your VS Code `settings.json` (open via **Cmd/Ctrl+Shift+P → Open User S
 {
   "mcp": {
     "servers": {
-      "testmo": {
+      "testmo-mcp": {
         "command": "npx",
-        "args": ["-y", "testmo-mcp"],
+        "args": ["-y", "testmo-mcp@latest"],
         "env": {
           "TESTMO_URL": "https://your-instance.testmo.net",
           "TESTMO_TOKEN": "your-api-token"
@@ -306,9 +323,9 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmo": {
+    "testmo-mcp": {
       "command": "npx",
-      "args": ["-y", "testmo-mcp"],
+      "args": ["-y", "testmo-mcp@latest"],
       "env": {
         "TESTMO_URL": "https://your-instance.testmo.net",
         "TESTMO_TOKEN": "your-api-token"
@@ -324,7 +341,7 @@ Add to your Gemini CLI config at `~/.gemini/settings.json`:
 
 1. Open ChatGPT Desktop → **Settings → Integrations**
 2. Click **Add MCP Server**
-3. Set Command to `npx` and Args to `-y testmo-mcp`
+3. Set Command to `npx` and Args to `-y testmo-mcp@latest`
 4. Add `TESTMO_URL` and `TESTMO_TOKEN` as environment variables
 
 > MCP in ChatGPT Desktop requires a **Plus, Pro, or Team** plan.
@@ -377,7 +394,7 @@ npm run dev
 npx @modelcontextprotocol/inspector \
   -e TESTMO_URL=https://your-instance.testmo.net \
   -e TESTMO_TOKEN=your-token \
-  npx testmo-mcp
+  npx testmo-mcp@latest
 ```
 
 Opens a browser UI where you can call any tool interactively and inspect the raw JSON response.
